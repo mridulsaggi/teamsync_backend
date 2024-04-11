@@ -7,6 +7,13 @@ import connection from "./utils/connection.js";
 import cookieParser from "cookie-parser"
 const app=express();
 dotenv.config();
+// implementing cors
+const corsoptions={
+    origin:"https://localhost/3000",
+    methods:"*",
+    credentials:true
+}
+app.use(cors(corsoptions))
 app.use(cookieParser())
 app.use(express.json());
 // app.use((express.urlencoded({extended:true})))
