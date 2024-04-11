@@ -1,17 +1,17 @@
-import usermodel from "../../schema/userschema.js";
+import usermodel from "../../utils/schema/userschema.js";
 import bcryptjs from "bcryptjs"
 import generatejwt from "../../utils/generatejwt.js";
 export const signup=async(req,res)=>{
     try{
         const {name,username,password,confirmpassword,gender}=req.body;
         if(password!==confirmpassword){
-            res.status(400).json({error:"passowrd do not match"});
+            res.json({error:"passowrd do not match"});
             return;
         } 
 
         const user=await usermodel.findOne({username});
         if(user){
-            res.status(400).json({error:"user with this usernamee already exists"})
+            res.json({error:"user with this usernamee already exists"})
             return;
         }
 
@@ -36,12 +36,12 @@ export const signup=async(req,res)=>{
         }
         else{
             console.log(error.message);
-            res.status(400).json({error:"Invalid user details."})
+            res.json({error:"Invalid user details."})
         }
     }
     catch(error){
         console.log(error.message);
-        res.status(400).json({error:"internal server error :("})
+        res.status(500).json({error:"internal server error :("})
     }
     
     
