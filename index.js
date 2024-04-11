@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import usermodel from "./schema/userschema.js"
+import cors from "cors"
 import route from "./routes/route.js"
 import connection from "./utils/connection.js";
 import cookieParser from "cookie-parser"
