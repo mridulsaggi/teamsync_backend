@@ -5,7 +5,7 @@ export const login=async(req,res)=>{
     try{
         const {username,password}=req.body;
         const user=await usermodel.findOne({username});
-        if(!user) return res.json({error:`No user with ${username} username exists`})
+        if(!user) return res.json({message:`No user with ${username} username exists`})
 
         // compare password
         const matched=await bcryptjs.compare(password,user?.password || "");
@@ -16,11 +16,11 @@ export const login=async(req,res)=>{
             console.log(user);
         }
         else{
-            res.json({error:"Invalid Password"})
+            res.json({message:"Invalid Password"})
         }
     }
     catch(err){
         console.log(err.message);
-        res.status(500).json({error:"internal server error :("})
+        res.status(500).json({message:"internal server error :("})
     }
 }

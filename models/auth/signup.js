@@ -5,13 +5,13 @@ export const signup=async(req,res)=>{
     try{
         const {name,username,password,confirmpassword,gender}=req.body;
         if(password!==confirmpassword){
-            res.json({error:"passowrd do not match"});
+            res.json({message:"password do not match"});
             return;
         } 
 
         const user=await usermodel.findOne({username});
         if(user){
-            res.json({error:"user with this usernamee already exists"})
+            res.json({message:"user with this usernamee already exists"})
             return;
         }
 
@@ -32,16 +32,16 @@ export const signup=async(req,res)=>{
         if(newuser){
             await newuser.save();
             generatejwt(newuser._id,res);
-            res.status(201).json({newuser});
+            res.status(201).json({message:"user registered successfully"});
         }
         else{
             console.log(error.message);
-            res.json({error:"Invalid user details."})
+            res.json({message:"Invalid user details."})
         }
     }
     catch(error){
         console.log(error.message);
-        res.status(500).json({error:"internal server error :("})
+        res.status(500).json({message:"internal server error :("})
     }
     
     
