@@ -10,7 +10,7 @@ const app=express();
 dotenv.config();
 // implementing cors
 const corsoptions={
-    origin:"http://localhost:3000",
+    origin:"http://localhost:5173",
     methods:"*",
     credentials:true
 }
