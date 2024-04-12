@@ -3,9 +3,9 @@ import bcryptjs from "bcryptjs"
 import generatejwt from "../../utils/generatejwt.js";
 export const login=async(req,res)=>{
     try{
-        const {username,password}=req.body;
-        const user=await usermodel.findOne({username});
-        if(!user) return res.json({message:`No user with ${username} username exists`})
+        const {email,password}=req.body;
+        const user=await usermodel.findOne({email});
+        if(!user) return res.json({message:`No user with ${email} emailid exists`})
 
         // compare password
         const matched=await bcryptjs.compare(password,user?.password || "");

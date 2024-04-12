@@ -3,20 +3,20 @@ import bcryptjs from "bcryptjs"
 import generatejwt from "../../utils/generatejwt.js";
 export const signup=async(req,res)=>{
     try{
-        const {name,username,password,confirmpassword,gender}=req.body;
+        const {name,password,confirmpassword,description,companyname,email,gender}=req.body;
         if(password!==confirmpassword){
             res.json({message:"password do not match"});
             return;
         } 
 
-        const user=await usermodel.findOne({username});
+        const user=await usermodel.findOne({email});
         if(user){
-            res.json({message:"user with this usernamee already exists"})
+            res.json({message:"user with this emailid already exists"})
             return;
         }
 
-        const boyprofilepic=`https://avatar.iran.liara.run/public/boy?username=${username}/`
-        const girlprofilepic=`https://avatar.iran.liara.run/public/girl?username=${username}/`
+        const boyprofilepic=`https://avatar.iran.liara.run/public/boy?username=${name}/`
+        const girlprofilepic=`https://avatar.iran.liara.run/public/girl?username=${name}/`
 
         // hash pasword
         const hashedpassword=await bcryptjs.hash(password,10);
@@ -24,9 +24,10 @@ export const signup=async(req,res)=>{
 
         const newuser=usermodel({
             name,
-            username,
             password:hashedpassword,
             gender,
+            description,
+            companyname,
             profilepic:gender=="male"?boyprofilepic:girlprofilepic
         })
         if(newuser){

@@ -23,7 +23,7 @@ app.use(express.json());
 app.use("/api/auth",route);
 
 // listening the server.
-app.listen(3000,()=>{
+app.listen(8000,()=>{
     connection();
-    console.log(`server is running on port ${process.env.port}`);
+    console.log(`server is running on port 8000`);
 })
