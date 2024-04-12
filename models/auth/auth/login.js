@@ -1,6 +1,6 @@
-import usermodel from "../../utils/schema/userschema.js";
+import usermodel from "../../../utils/schema/userschema.js";
 import bcryptjs from "bcryptjs"
-import generatejwt from "../../utils/generatejwt.js";
+import generatejwt from "../../../utils/generatejwt.js";
 export const login=async(req,res)=>{
     try{
         const {email,password}=req.body;

@@ -6,6 +6,7 @@ import cors from "cors"
 import route from "./routes/route.js"
 import connection from "./utils/connection.js";
 import cookieParser from "cookie-parser"
+import userroute from "./routes/userroute.js"
 const app=express();
 dotenv.config();
 // implementing cors
@@ -21,6 +22,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/auth",route);
+app.use("/api/user",userroute);
 
 // listening the server.
 app.listen(8000,()=>{

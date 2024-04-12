@@ -1,6 +1,6 @@
-import usermodel from "../../utils/schema/userschema.js";
+import usermodel from "../../../utils/schema/userschema.js";
 import bcryptjs from "bcryptjs"
-import generatejwt from "../../utils/generatejwt.js";
+import generatejwt from "../../../utils/generatejwt.js";
 export const signup=async(req,res)=>{
     try{
         const {name,password,confirmpassword,description,companyname,email,gender}=req.body;
@@ -28,6 +28,7 @@ export const signup=async(req,res)=>{
             gender,
             description,
             companyname,
+            email,
             profilepic:gender=="male"?boyprofilepic:girlprofilepic
         })
         if(newuser){
